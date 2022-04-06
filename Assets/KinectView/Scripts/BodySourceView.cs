@@ -8,10 +8,17 @@ public class BodySourceView : MonoBehaviour
 
     public Vector3 pos;
 
+    public int count;
+
     static public float leftFootY;
     static public float rightFootY;
     static public float leftFootZ;
     static public float rightFootZ;
+    
+    static public float leftFoot2Y;
+    static public float rightFoot2Y;
+    static public float leftFoot2Z;
+    static public float rightFoot2Z;
 
     public Material BoneMaterial;
     public GameObject BodySourceManager;
@@ -21,6 +28,7 @@ public class BodySourceView : MonoBehaviour
     public GameObject rightFlip;
 
     public bool pow;
+    public bool power = true;
     
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
@@ -57,6 +65,12 @@ public class BodySourceView : MonoBehaviour
         { Kinect.JointType.Neck, Kinect.JointType.Head },
     };
     
+    void Start()
+    {
+        //pinball.SetActive(false);   
+
+    }
+
     void Update () 
     {
         if (BodySourceManager == null)
@@ -71,9 +85,21 @@ public class BodySourceView : MonoBehaviour
         }
         
         Kinect.Body[] data = _BodyManager.GetData();
+
+        
         if (data == null)
         {
             return;
+        }
+
+        if (power){     
+            foreach (var body in data){
+                
+                count++;
+                
+            }
+            //print(count);
+            power = false;
         }
         
         List<ulong> trackedIds = new List<ulong>();
@@ -82,11 +108,11 @@ public class BodySourceView : MonoBehaviour
             if (body == null)
             {
                 continue;
-              }
+            }
                 
             if(body.IsTracked)
             {
-                trackedIds.Add (body.TrackingId);
+                trackedIds.Add(body.TrackingId);
             }
         }
         
@@ -102,11 +128,17 @@ public class BodySourceView : MonoBehaviour
             }
         }
 
+        //foreach(ulong trackingId in knownIds)
+        //{
+            
+        //}
+
 
         Rigidbody rb = pinball.GetComponent<Rigidbody>();
 
         Rigidbody lrb = leftFlip.GetComponent<Rigidbody>();
         Rigidbody rrb = rightFlip.GetComponent<Rigidbody>();
+        
 
         Vector3 vel = rb.velocity;
 
@@ -115,9 +147,19 @@ public class BodySourceView : MonoBehaviour
 
         float rnd = Random.Range(0f, 0.5f);
        
+       
         pos = pinball.transform.position;
 
         //print(pos[1]);
+
+        //if (leftFootY > 0.2 && rightFootY > 0.2)
+        //        {
+        //                pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
+        //                pinball.SetActive(true);
+        //        }
+
+        bool foundLeft = false;
+        bool foundRight = false;
 
         foreach(var body in data)
         {
@@ -131,25 +173,46 @@ public class BodySourceView : MonoBehaviour
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
                     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
+                    print(body.TrackingId);
                 }
-                
+
                 RefreshBodyObject(body, _Bodies[body.TrackingId]);
+    
+                
                 Kinect.Joint footLeft = body.Joints[Kinect.JointType.FootLeft];
                 Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
 
-                leftFootY = footLeft.Position.Y;
-                rightFootY = footRight.Position.Y;
+                if (footLeft.Position.X > 0){
+                    
+                    foundLeft = true;
 
-                leftFootZ = footLeft.Position.Z;
-                rightFootZ = footRight.Position.Z;
-                
-                //if (pos[1] < -3)
-                //{
-                
-                // && pos[1] > -4
+                    leftFootY = footLeft.Position.Y;
+                    rightFootY = footRight.Position.Y;
 
+                    leftFootZ = footLeft.Position.Z;
+                    rightFootZ = footRight.Position.Z;
+
+                }
+                else if (footLeft.Position.X < 0 && footLeft.Position.X > -1 && footLeft.Position.Z < 2){
+                    
+                    foundRight = true;
+
+                    leftFoot2Y = footLeft.Position.Y;
+                    rightFoot2Y = footRight.Position.Y;
+
+                    leftFoot2Z = footLeft.Position.Z;
+                    rightFoot2Z = footRight.Position.Z;
+                }                
+
+                if (leftFootY > 0.2 && rightFootY > 0.2)
+                {
+                    pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
+                    pinball.SetActive(true);
+                }
+
+                
                 //if (footLeft.Position.Y > footRight.Position.Y + 0.2)
-                if (leftFootZ > rightFootZ + 0.2)
+                if (leftFootZ > rightFootZ + 0.2 || rightFootZ > leftFootZ + 0.2)
                     { 
                         //rb.velocity = new Vector3(x * -1 + rnd, 13, z);
                   
@@ -162,7 +225,7 @@ public class BodySourceView : MonoBehaviour
                 
 
                 //else if (footRight.Position.Y > footLeft.Position.Y + 0.2)
-                else if (rightFootZ > leftFootZ + 0.2)
+                else if (rightFoot2Z > leftFoot2Z + 0.2 || leftFoot2Z > rightFoot2Z + 0.2)
                     { 
                         //rb.velocity = new Vector3(x * -1 + rnd, 13, z);
                   
@@ -186,9 +249,17 @@ public class BodySourceView : MonoBehaviour
 
                     pow = false;
                    }
-            //}
+            
                
             }
+        }
+        if (!foundLeft){
+            leftFootY = 0;
+            leftFootZ = 0;
+        }
+        if (!foundRight){
+            leftFoot2Y = 0;
+            leftFoot2Y = 0;
         }
     }
 
