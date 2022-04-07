@@ -68,7 +68,7 @@ public class BodySourceView : MonoBehaviour
     void Start()
     {
         pinball.SetActive(false);   
-        print("Off: " + pinball.activeSelf);
+        //print("Off: " + pinball.activeSelf);
 
     }
 
@@ -165,7 +165,7 @@ public class BodySourceView : MonoBehaviour
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
                     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
-                    print(body.TrackingId);
+                    //print(body.TrackingId);
                 }
 
                 RefreshBodyObject(body, _Bodies[body.TrackingId]);
@@ -174,9 +174,9 @@ public class BodySourceView : MonoBehaviour
                 Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
                 Kinect.Joint handRight = body.Joints[Kinect.JointType.HandRight];
 
-                print(handRight.Position.Y);
+                //print(handRight.Position.Y);
 
-                if (footLeft.Position.X > 0){
+                if (footLeft.Position.X < 0){
                     
                     foundLeft = true;
 
@@ -186,9 +186,11 @@ public class BodySourceView : MonoBehaviour
                     leftFootZ = footLeft.Position.Z;
                     rightFootZ = footRight.Position.Z;
 
+                    print("Left1: " + leftFootZ + "Right1: " + rightFootZ);
+
                 }
-                else if (footLeft.Position.X < 0 && footLeft.Position.X > -1 && footLeft.Position.Z < 2){
-                    
+                else if (footLeft.Position.X > 0){
+                    // && footLeft.Position.X > -1 && footLeft.Position.Z < 2
                     foundRight = true;
 
                     leftFoot2Y = footLeft.Position.Y;
@@ -196,6 +198,8 @@ public class BodySourceView : MonoBehaviour
 
                     leftFoot2Z = footLeft.Position.Z;
                     rightFoot2Z = footRight.Position.Z;
+
+                    print("Left2: " + leftFoot2Z + "Right2: " + rightFoot2Z);
                 }                
 
                 //launch ball
@@ -204,7 +208,7 @@ public class BodySourceView : MonoBehaviour
                 if (handRight.Position.Y > 0)
                 {
                     pinball.SetActive(true);
-                    print("On: " + pinball.activeSelf);
+                    //print("On: " + pinball.activeSelf);
                     pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);   
                 }
      
