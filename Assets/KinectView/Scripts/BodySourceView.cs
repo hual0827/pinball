@@ -128,18 +128,11 @@ public class BodySourceView : MonoBehaviour
             }
         }
 
-        //foreach(ulong trackingId in knownIds)
-        //{
-            
-        //}
-
-
         Rigidbody rb = pinball.GetComponent<Rigidbody>();
 
         Rigidbody lrb = leftFlip.GetComponent<Rigidbody>();
         Rigidbody rrb = rightFlip.GetComponent<Rigidbody>();
         
-
         Vector3 vel = rb.velocity;
 
         float x = vel[0];
@@ -147,17 +140,8 @@ public class BodySourceView : MonoBehaviour
 
         float rnd = Random.Range(0f, 0.5f);
        
-       
         pos = pinball.transform.position;
-
-        //print(pos[1]);
-
-        //if (leftFootY > 0.2 && rightFootY > 0.2)
-        //        {
-        //                pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
-        //                pinball.SetActive(true);
-        //        }
-
+        
         bool foundLeft = false;
         bool foundRight = false;
 
@@ -178,7 +162,6 @@ public class BodySourceView : MonoBehaviour
 
                 RefreshBodyObject(body, _Bodies[body.TrackingId]);
     
-                
                 Kinect.Joint footLeft = body.Joints[Kinect.JointType.FootLeft];
                 Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
 
@@ -204,17 +187,15 @@ public class BodySourceView : MonoBehaviour
                     rightFoot2Z = footRight.Position.Z;
                 }                
 
-                if (leftFootY > 0.2 && rightFootY > 0.2)
+                if (leftFootY > 0 && rightFootY > 0)
                 {
                     pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
                     pinball.SetActive(true);
                 }
-
-                
-                //if (footLeft.Position.Y > footRight.Position.Y + 0.2)
+     
+                //player one controls left flipper
                 if (leftFootZ > rightFootZ + 0.2 || rightFootZ > leftFootZ + 0.2)
                     { 
-                        //rb.velocity = new Vector3(x * -1 + rnd, 13, z);
                   
                         Vector3 newRotation = new Vector3(0, 0, 10);
                         leftFlip.transform.eulerAngles = newRotation; 
@@ -223,11 +204,9 @@ public class BodySourceView : MonoBehaviour
                        
                     }
                 
-
-                //else if (footRight.Position.Y > footLeft.Position.Y + 0.2)
+                //player two controls right flipper
                 else if (rightFoot2Z > leftFoot2Z + 0.2 || leftFoot2Z > rightFoot2Z + 0.2)
                     { 
-                        //rb.velocity = new Vector3(x * -1 + rnd, 13, z);
                   
                         Vector3 newRotation = new Vector3(0, 0, -10);
                         rightFlip.transform.eulerAngles = newRotation;
@@ -236,19 +215,19 @@ public class BodySourceView : MonoBehaviour
               
                     }
                 
-               else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && leftFlip.transform.rotation.z > 0) {
+                else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && leftFlip.transform.rotation.z > 0) {
                     Vector3 backRotation = new Vector3(0, 0, -13);
                     leftFlip.transform.eulerAngles = backRotation;
 
                     pow = false;
                 
-                   }
+                }
                  else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && rightFlip.transform.rotation.z < 0) {
                     Vector3 backRRotation = new Vector3(0, 0, 13);
                     rightFlip.transform.eulerAngles = backRRotation;
 
                     pow = false;
-                   }
+                }
             
                
             }
