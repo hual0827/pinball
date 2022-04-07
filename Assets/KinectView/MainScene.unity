@@ -1808,7 +1808,6 @@ GameObject:
   - component: {fileID: 676194383}
   - component: {fileID: 676194382}
   - component: {fileID: 676194381}
-  - component: {fileID: 676194387}
   - component: {fileID: 676194388}
   m_Layer: 0
   m_Name: Ball
@@ -1921,27 +1920,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &676194387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676194380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8821130411451d343a1488e2a9db134e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pos: {x: 0, y: 0, z: 0}
-  count: 0
-  BoneMaterial: {fileID: 0}
-  BodySourceManager: {fileID: 0}
-  pinball: {fileID: 0}
-  leftFlip: {fileID: 0}
-  rightFlip: {fileID: 0}
-  pow: 0
-  power: 1
 --- !u!114 &676194388
 MonoBehaviour:
   m_ObjectHideFlags: 0

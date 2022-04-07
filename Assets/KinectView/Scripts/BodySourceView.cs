@@ -67,7 +67,8 @@ public class BodySourceView : MonoBehaviour
     
     void Start()
     {
-        //pinball.SetActive(false);   
+        pinball.SetActive(false);   
+        print("Off: " + pinball.activeSelf);
 
     }
 
@@ -92,15 +93,14 @@ public class BodySourceView : MonoBehaviour
             return;
         }
 
-        if (power){     
-            foreach (var body in data){
+        //if (power){     
+        //    foreach (var body in data){
                 
-                count++;
+        //        count++;
                 
-            }
-            //print(count);
-            power = false;
-        }
+        //    }
+        //    power = false;
+        //}
         
         List<ulong> trackedIds = new List<ulong>();
         foreach(var body in data)
@@ -128,19 +128,27 @@ public class BodySourceView : MonoBehaviour
             }
         }
 
-        Rigidbody rb = pinball.GetComponent<Rigidbody>();
+        if (pinball.activeSelf)
+        {
+            Rigidbody rb = pinball.GetComponent<Rigidbody>();
+            Vector3 vel = rb.velocity;
 
+            float x = vel[0];
+            float z = vel[2];
+        }
+        
         Rigidbody lrb = leftFlip.GetComponent<Rigidbody>();
         Rigidbody rrb = rightFlip.GetComponent<Rigidbody>();
         
-        Vector3 vel = rb.velocity;
+       
 
-        float x = vel[0];
-        float z = vel[2];
 
         float rnd = Random.Range(0f, 0.5f);
        
-        pos = pinball.transform.position;
+       if (pinball.activeSelf)
+       {
+            pos = pinball.transform.position;
+       }
         
         bool foundLeft = false;
         bool foundRight = false;
@@ -164,6 +172,9 @@ public class BodySourceView : MonoBehaviour
     
                 Kinect.Joint footLeft = body.Joints[Kinect.JointType.FootLeft];
                 Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
+                Kinect.Joint handRight = body.Joints[Kinect.JointType.HandRight];
+
+                print(handRight.Position.Y);
 
                 if (footLeft.Position.X > 0){
                     
@@ -187,14 +198,18 @@ public class BodySourceView : MonoBehaviour
                     rightFoot2Z = footRight.Position.Z;
                 }                
 
-                if (leftFootY > 0 && rightFootY > 0)
+                //launch ball
+                //if ((leftFootY > 0 && rightFootY > 0) || (leftFoot2Y > 0 && rightFoot2Y > 0))
+                //if (Input.GetKeyDown(KeyCode.Space))
+                if (handRight.Position.Y > 0)
                 {
-                    pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
                     pinball.SetActive(true);
+                    print("On: " + pinball.activeSelf);
+                    pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);   
                 }
      
                 //player one controls left flipper
-                if (leftFootZ > rightFootZ + 0.2 || rightFootZ > leftFootZ + 0.2)
+                else if (leftFootZ > rightFootZ + 0.2 || rightFootZ > leftFootZ + 0.2)
                     { 
                   
                         Vector3 newRotation = new Vector3(0, 0, 10);

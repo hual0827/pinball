@@ -8,17 +8,17 @@ public class Launch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ball.SetActive(false);    
+        //ball.SetActive(false);    
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
-            ball.SetActive(true);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    ball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
+        //    ball.SetActive(true);
+        //}
     }
 }
