@@ -74,6 +74,40 @@ public class BodySourceView : MonoBehaviour
 
     void Update () 
     {
+
+        //key controls for testing
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            pinball.SetActive(true);
+            pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);   
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        { 
+            Vector3 newRotation = new Vector3(-178, 1, 40);
+            leftFlip.transform.eulerAngles = newRotation; 
+            pow = true;
+        }   
+        if (Input.GetKeyDown(KeyCode.D))
+        { 
+            Vector3 newRotation = new Vector3(0, 0, -7);
+            rightFlip.transform.eulerAngles = newRotation;
+            pow = true;
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            Vector3 backRotation = new Vector3(-178, 1, 70);
+            leftFlip.transform.eulerAngles = backRotation; 
+            pow = false;
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            Vector3 backRotation = new Vector3(0, 0, 23);
+            rightFlip.transform.eulerAngles = backRotation; 
+            pow = false;
+        }
+
+                
+
         if (BodySourceManager == null)
         {
             return;
