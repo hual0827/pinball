@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Kinect = Windows.Kinect;
 
-public class BodySourceView : MonoBehaviour 
+public class BodySourceView : MonoBehaviour
 {
 
     public Vector3 pos;
@@ -14,7 +14,7 @@ public class BodySourceView : MonoBehaviour
     static public float rightFootY;
     static public float leftFootZ;
     static public float rightFootZ;
-    
+
     static public float leftFoot2Y;
     static public float rightFoot2Y;
     static public float leftFoot2Z;
@@ -29,113 +29,113 @@ public class BodySourceView : MonoBehaviour
 
     public bool pow;
     public bool power = true;
-    
+
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
-    
+
     private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
     {
         { Kinect.JointType.FootLeft, Kinect.JointType.AnkleLeft },
         { Kinect.JointType.AnkleLeft, Kinect.JointType.KneeLeft },
         { Kinect.JointType.KneeLeft, Kinect.JointType.HipLeft },
         { Kinect.JointType.HipLeft, Kinect.JointType.SpineBase },
-        
+
         { Kinect.JointType.FootRight, Kinect.JointType.AnkleRight },
         { Kinect.JointType.AnkleRight, Kinect.JointType.KneeRight },
         { Kinect.JointType.KneeRight, Kinect.JointType.HipRight },
         { Kinect.JointType.HipRight, Kinect.JointType.SpineBase },
-        
+
         { Kinect.JointType.HandTipLeft, Kinect.JointType.HandLeft },
         { Kinect.JointType.ThumbLeft, Kinect.JointType.HandLeft },
         { Kinect.JointType.HandLeft, Kinect.JointType.WristLeft },
         { Kinect.JointType.WristLeft, Kinect.JointType.ElbowLeft },
         { Kinect.JointType.ElbowLeft, Kinect.JointType.ShoulderLeft },
         { Kinect.JointType.ShoulderLeft, Kinect.JointType.SpineShoulder },
-        
+
         { Kinect.JointType.HandTipRight, Kinect.JointType.HandRight },
         { Kinect.JointType.ThumbRight, Kinect.JointType.HandRight },
         { Kinect.JointType.HandRight, Kinect.JointType.WristRight },
         { Kinect.JointType.WristRight, Kinect.JointType.ElbowRight },
         { Kinect.JointType.ElbowRight, Kinect.JointType.ShoulderRight },
         { Kinect.JointType.ShoulderRight, Kinect.JointType.SpineShoulder },
-        
+
         { Kinect.JointType.SpineBase, Kinect.JointType.SpineMid },
         { Kinect.JointType.SpineMid, Kinect.JointType.SpineShoulder },
         { Kinect.JointType.SpineShoulder, Kinect.JointType.Neck },
         { Kinect.JointType.Neck, Kinect.JointType.Head },
     };
-    
+
     void Start()
     {
-        pinball.SetActive(false);   
+        pinball.SetActive(false);
         //print("Off: " + pinball.activeSelf);
 
     }
 
-    void Update () 
+    void Update ()
     {
 
         //key controls for testing
         if (Input.GetKeyDown(KeyCode.Space))
         {
             pinball.SetActive(true);
-            pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);   
+            pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
         }
         if (Input.GetKeyDown(KeyCode.A))
-        { 
-            Vector3 newRotation = new Vector3(-178, 1, 40);
-            leftFlip.transform.eulerAngles = newRotation; 
+        {
+            Vector3 newRotation = new Vector3(0, 0, 190);
+            leftFlip.transform.eulerAngles = newRotation;
             pow = true;
-        }   
+        }
         if (Input.GetKeyDown(KeyCode.D))
-        { 
+        {
             Vector3 newRotation = new Vector3(0, 0, -7);
             rightFlip.transform.eulerAngles = newRotation;
             pow = true;
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
-            Vector3 backRotation = new Vector3(-178, 1, 70);
-            leftFlip.transform.eulerAngles = backRotation; 
+            Vector3 backRotation = new Vector3(0, 0, 160);
+            leftFlip.transform.eulerAngles = backRotation;
             pow = false;
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
             Vector3 backRotation = new Vector3(0, 0, 23);
-            rightFlip.transform.eulerAngles = backRotation; 
+            rightFlip.transform.eulerAngles = backRotation;
             pow = false;
         }
 
-                
+
 
         if (BodySourceManager == null)
         {
             return;
         }
-        
+
         _BodyManager = BodySourceManager.GetComponent<BodySourceManager>();
         if (_BodyManager == null)
         {
             return;
         }
-        
+
         Kinect.Body[] data = _BodyManager.GetData();
 
-        
+
         if (data == null)
         {
             return;
         }
 
-        //if (power){     
+        //if (power){
         //    foreach (var body in data){
-                
+
         //        count++;
-                
+
         //    }
         //    power = false;
         //}
-        
+
         List<ulong> trackedIds = new List<ulong>();
         foreach(var body in data)
         {
@@ -143,15 +143,15 @@ public class BodySourceView : MonoBehaviour
             {
                 continue;
             }
-                
+
             if(body.IsTracked)
             {
                 trackedIds.Add(body.TrackingId);
             }
         }
-        
+
         List<ulong> knownIds = new List<ulong>(_Bodies.Keys);
-        
+
         // First delete untracked bodies
         foreach(ulong trackingId in knownIds)
         {
@@ -170,20 +170,20 @@ public class BodySourceView : MonoBehaviour
             float x = vel[0];
             float z = vel[2];
         }
-        
+
         Rigidbody lrb = leftFlip.GetComponent<Rigidbody>();
         Rigidbody rrb = rightFlip.GetComponent<Rigidbody>();
-        
-       
+
+
 
 
         float rnd = Random.Range(0f, 0.5f);
-       
+
        if (pinball.activeSelf)
        {
             pos = pinball.transform.position;
        }
-        
+
         bool foundLeft = false;
         bool foundRight = false;
 
@@ -193,7 +193,7 @@ public class BodySourceView : MonoBehaviour
             {
                 continue;
             }
-            
+
             if(body.IsTracked)
             {
                 if(!_Bodies.ContainsKey(body.TrackingId))
@@ -203,7 +203,7 @@ public class BodySourceView : MonoBehaviour
                 }
 
                 RefreshBodyObject(body, _Bodies[body.TrackingId]);
-    
+
                 Kinect.Joint footLeft = body.Joints[Kinect.JointType.FootLeft];
                 Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
                 Kinect.Joint handRight = body.Joints[Kinect.JointType.HandRight];
@@ -211,7 +211,7 @@ public class BodySourceView : MonoBehaviour
                 //print(handRight.Position.Y);
 
                 if (footLeft.Position.X < 0){
-                    
+
                     foundLeft = true;
 
                     leftFootY = footLeft.Position.Y;
@@ -234,7 +234,7 @@ public class BodySourceView : MonoBehaviour
                     rightFoot2Z = footRight.Position.Z;
 
                     print("Left2: " + leftFoot2Z + "Right2: " + rightFoot2Z);
-                }                
+                }
 
                 //launch ball
                 //if ((leftFootY > 0 && rightFootY > 0) || (leftFoot2Y > 0 && rightFoot2Y > 0))
@@ -243,37 +243,37 @@ public class BodySourceView : MonoBehaviour
                 {
                     pinball.SetActive(true);
                     //print("On: " + pinball.activeSelf);
-                    pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);   
+                    pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
                 }
-     
+
                 //player one controls left flipper
                 else if (leftFootZ > rightFootZ + 0.2 || rightFootZ > leftFootZ + 0.2)
-                    { 
-                  
+                    {
+
                         Vector3 newRotation = new Vector3(0, 0, 10);
-                        leftFlip.transform.eulerAngles = newRotation; 
+                        leftFlip.transform.eulerAngles = newRotation;
 
                         pow = true;
-                       
+
                     }
-                
+
                 //player two controls right flipper
                 else if (rightFoot2Z > leftFoot2Z + 0.2 || leftFoot2Z > rightFoot2Z + 0.2)
-                    { 
-                  
+                    {
+
                         Vector3 newRotation = new Vector3(0, 0, -10);
                         rightFlip.transform.eulerAngles = newRotation;
 
                         pow = true;
-              
+
                     }
-                
+
                 else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && leftFlip.transform.rotation.z > 0) {
                     Vector3 backRotation = new Vector3(0, 0, -13);
                     leftFlip.transform.eulerAngles = backRotation;
 
                     pow = false;
-                
+
                 }
                  else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && rightFlip.transform.rotation.z < 0) {
                     Vector3 backRRotation = new Vector3(0, 0, 13);
@@ -281,8 +281,8 @@ public class BodySourceView : MonoBehaviour
 
                     pow = false;
                 }
-            
-               
+
+
             }
         }
         if (!foundLeft){
@@ -295,44 +295,44 @@ public class BodySourceView : MonoBehaviour
         }
     }
 
-   
-    
+
+
     private GameObject CreateBodyObject(ulong id)
     {
         GameObject body = new GameObject("Body:" + id);
-        
+
         for (Kinect.JointType jt = Kinect.JointType.SpineBase; jt <= Kinect.JointType.ThumbRight; jt++)
         {
             GameObject jointObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            
+
             LineRenderer lr = jointObj.AddComponent<LineRenderer>();
             lr.SetVertexCount(2);
             lr.material = BoneMaterial;
             lr.SetWidth(0.05f, 0.05f);
-            
+
             jointObj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             jointObj.name = jt.ToString();
             jointObj.transform.parent = body.transform;
         }
-        
+
         return body;
     }
-    
+
     private void RefreshBodyObject(Kinect.Body body, GameObject bodyObject)
     {
         for (Kinect.JointType jt = Kinect.JointType.SpineBase; jt <= Kinect.JointType.ThumbRight; jt++)
         {
             Kinect.Joint sourceJoint = body.Joints[jt];
             Kinect.Joint? targetJoint = null;
-            
+
             if(_BoneMap.ContainsKey(jt))
             {
                 targetJoint = body.Joints[_BoneMap[jt]];
             }
-            
+
             Transform jointObj = bodyObject.transform.Find(jt.ToString());
             jointObj.localPosition = GetVector3FromJoint(sourceJoint);
-            
+
             LineRenderer lr = jointObj.GetComponent<LineRenderer>();
             if(targetJoint.HasValue)
             {
@@ -346,7 +346,7 @@ public class BodySourceView : MonoBehaviour
             }
         }
     }
-    
+
     private static Color GetColorForState(Kinect.TrackingState state)
     {
         switch (state)
@@ -361,7 +361,7 @@ public class BodySourceView : MonoBehaviour
             return Color.black;
         }
     }
-    
+
     private static Vector3 GetVector3FromJoint(Kinect.Joint joint)
     {
         return new Vector3(joint.Position.X * 10, joint.Position.Y * 10, joint.Position.Z * 10);
