@@ -28,6 +28,7 @@ public class BodySourceView : MonoBehaviour
     public GameObject rightFlip;
 
     public bool pow;
+    public bool pow2;
     public bool power = true;
 
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
@@ -83,7 +84,7 @@ public class BodySourceView : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Vector3 newRotation = new Vector3(0, 0, 190);
+            Vector3 newRotation = new Vector3(180, 0, 175);
             leftFlip.transform.eulerAngles = newRotation;
             pow = true;
         }
@@ -91,11 +92,11 @@ public class BodySourceView : MonoBehaviour
         {
             Vector3 newRotation = new Vector3(0, 0, -7);
             rightFlip.transform.eulerAngles = newRotation;
-            pow = true;
+            pow2 = true;
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
-            Vector3 backRotation = new Vector3(0, 0, 160);
+            Vector3 backRotation = new Vector3(180, 0, 205);
             leftFlip.transform.eulerAngles = backRotation;
             pow = false;
         }
@@ -103,7 +104,7 @@ public class BodySourceView : MonoBehaviour
         {
             Vector3 backRotation = new Vector3(0, 0, 23);
             rightFlip.transform.eulerAngles = backRotation;
-            pow = false;
+            pow2 = false;
         }
 
 

@@ -37,11 +37,16 @@ public class Reverse : MonoBehaviour
                 rb.velocity = new Vector3(x * -1 + rnd, 13, z);
                 print("3");
             }
+           
+        }
+        if (b.pow2 == true)
+        {
             if (col.gameObject.name == "right flipper")
             {
                 rb.velocity = new Vector3(x * -1 + rnd, 13, z);
                 print("3");
             }
         }
+        
     }
 }
