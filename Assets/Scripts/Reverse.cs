@@ -26,16 +26,11 @@ public class Reverse : MonoBehaviour
         float z = vel[2];
         float rnd = Random.Range(0f, 0.5f);
 
-        print("1");
-        print(b.pow);
-
         if (b.pow == true)
         {
-            print("2");
             if (col.gameObject.name == "left flipper")
             {
                 rb.velocity = new Vector3(x * -1 + rnd, 13, z);
-                print("3");
             }
            
         }
@@ -44,7 +39,6 @@ public class Reverse : MonoBehaviour
             if (col.gameObject.name == "right flipper")
             {
                 rb.velocity = new Vector3(x * -1 + rnd, 13, z);
-                print("3");
             }
         }
         

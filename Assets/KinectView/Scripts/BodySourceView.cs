@@ -75,7 +75,6 @@ public class BodySourceView : MonoBehaviour
 
     void Update ()
     {
-
         //key controls for testing
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -222,7 +221,6 @@ public class BodySourceView : MonoBehaviour
                     rightFootZ = footRight.Position.Z;
 
                     print("Left1: " + leftFootZ + "Right1: " + rightFootZ);
-
                 }
                 else if (footLeft.Position.X > 0){
                     // && footLeft.Position.X > -1 && footLeft.Position.Z < 2
@@ -239,7 +237,6 @@ public class BodySourceView : MonoBehaviour
 
                 //launch ball
                 //if ((leftFootY > 0 && rightFootY > 0) || (leftFoot2Y > 0 && rightFoot2Y > 0))
-                //if (Input.GetKeyDown(KeyCode.Space))
                 if (handRight.Position.Y > 0)
                 {
                     pinball.SetActive(true);
@@ -248,52 +245,51 @@ public class BodySourceView : MonoBehaviour
                 }
 
                 //player one controls left flipper
-                else if (leftFootZ > rightFootZ + 0.2 || rightFootZ > leftFootZ + 0.2)
+                if (leftFootZ > rightFootZ + 0.1 || rightFootZ > leftFootZ + 0.1)
                     {
 
-                        Vector3 newRotation = new Vector3(0, 0, 10);
+                        Vector3 newRotation = new Vector3(180, 0, 175);
                         leftFlip.transform.eulerAngles = newRotation;
 
                         pow = true;
 
                     }
-
                 //player two controls right flipper
-                else if (rightFoot2Z > leftFoot2Z + 0.2 || leftFoot2Z > rightFoot2Z + 0.2)
+                if (rightFoot2Z > leftFoot2Z + 0.3 || leftFoot2Z > rightFoot2Z + 0.3)
                     {
-
-                        Vector3 newRotation = new Vector3(0, 0, -10);
+                        Vector3 newRotation = new Vector3(0, 0, -13);
                         rightFlip.transform.eulerAngles = newRotation;
+                        pow2 = true;
 
-                        pow = true;
-
+                        print("FLIPPERROT AFTER: " + rightFlip.transform.eulerAngles.z);
                     }
-
-                else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && leftFlip.transform.rotation.z > 0) {
-                    Vector3 backRotation = new Vector3(0, 0, -13);
+                else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && leftFlip.transform.rotation.z < 200) {
+                    Vector3 backRotation = new Vector3(180, 0, 205);
                     leftFlip.transform.eulerAngles = backRotation;
 
                     pow = false;
-
                 }
-                 else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && rightFlip.transform.rotation.z < 0) {
-                    Vector3 backRRotation = new Vector3(0, 0, 13);
+                if (rightFoot2Z < leftFoot2Z + 0.2 && rightFoot2Z > leftFoot2Z - 0.2 && rightFlip.transform.eulerAngles.z > 25) {
+                    
+                    print("MADE IT");
+                    Vector3 backRRotation = new Vector3(0, 0, 25);
+                    print("BR" + backRRotation);
                     rightFlip.transform.eulerAngles = backRRotation;
-
-                    pow = false;
+                    print("AFTERR" + rightFlip.transform.eulerAngles);
+                    pow2 = false;
                 }
 
 
             }
         }
-        if (!foundLeft){
-            leftFootY = 0;
-            leftFootZ = 0;
-        }
-        if (!foundRight){
-            leftFoot2Y = 0;
-            leftFoot2Y = 0;
-        }
+        //if (!foundLeft){
+        //    leftFootY = 0;
+        //    leftFootZ = 0;
+        //}
+        //if (!foundRight){
+        //    leftFoot2Y = 0;
+        //    leftFoot2Y = 0;
+        //}
     }
 
 
