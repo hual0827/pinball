@@ -1236,14 +1236,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612251950}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7073613, w: 0.7068522}
-  m_LocalPosition: {x: -2.67, y: -2.52, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.79571354, w: 0.6056732}
+  m_LocalPosition: {x: -2.599053, y: -3.290898, z: 0}
   m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.4}
   m_Children:
   - {fileID: 518525925}
   m_Father: {fileID: 20793329}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.041}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 105.445}
 --- !u!1 &621391746
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,7 +3682,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831473919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62590295, y: -1.1289674, z: -7.510172}
+  m_LocalPosition: {x: 0.62590295, y: -3.88, z: -7.510172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7523985653959410953}
@@ -5834,14 +5834,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483160692633270911}
-  m_LocalRotation: {x: -0, y: -0, z: -0.064707026, w: 0.9979043}
-  m_LocalPosition: {x: -0.55, y: 0.246, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.1623909, w: 0.9867265}
+  m_LocalPosition: {x: 0.008932313, y: 0.08597295, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 1759752002012396730}
   m_Father: {fileID: 20793329}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.42}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -18.691}
 --- !u!23 &2315285088942171486
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8175,7 +8175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5718868608965734794}
   m_LocalRotation: {x: 0.014181541, y: -0, z: -0, w: 0.99989945}
-  m_LocalPosition: {x: 2.0140972, y: 2.7089674, z: 6.990172}
+  m_LocalPosition: {x: 2.0140972, y: 4.77, z: 7.05}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4873839718796212047}
