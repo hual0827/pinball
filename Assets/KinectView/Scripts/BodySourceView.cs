@@ -3,10 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Kinect = Windows.Kinect;
 
-//[RequireComponent(typeof(HingeJoint))]
-//[RequireComponent(typeof(Rigidbody))]
-//[RequireComponent(typeof(MeshCollider))]
-
 public class BodySourceView : MonoBehaviour
 {
     public Vector3 pos;
@@ -32,7 +28,6 @@ public class BodySourceView : MonoBehaviour
 
     public bool pow;
     public bool pow2;
-    //public bool power = true;
 
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
@@ -72,8 +67,6 @@ public class BodySourceView : MonoBehaviour
     void Start()
     {
         pinball.SetActive(false);
-
-       
     }
 
     void Update ()
@@ -82,16 +75,10 @@ public class BodySourceView : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             pinball.SetActive(true);
-            //pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
             Rigidbody rb = pinball.GetComponent<Rigidbody>();
             Vector3 vel = rb.velocity;
 
-            float x = vel[0];
-            float z = vel[2];
-
-            float rand = Random.Range(0f, 0.5f);
-
-            rb.velocity = new Vector3(0, 20, -1);
+            rb.velocity = new Vector3(0, 20, 0);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -118,8 +105,6 @@ public class BodySourceView : MonoBehaviour
             pow2 = false;
         }
 
-
-
         if (BodySourceManager == null)
         {
             return;
@@ -133,20 +118,10 @@ public class BodySourceView : MonoBehaviour
 
         Kinect.Body[] data = _BodyManager.GetData();
 
-
         if (data == null)
         {
             return;
         }
-
-        //if (power){
-        //    foreach (var body in data){
-
-        //        count++;
-
-        //    }
-        //    power = false;
-        //}
 
         List<ulong> trackedIds = new List<ulong>();
         foreach(var body in data)
@@ -185,10 +160,7 @@ public class BodySourceView : MonoBehaviour
 
         Rigidbody lrb = leftFlip.GetComponent<Rigidbody>();
         Rigidbody rrb = rightFlip.GetComponent<Rigidbody>();
-
-
-
-
+        
         float rnd = Random.Range(0f, 0.5f);
 
        if (pinball.activeSelf)
@@ -211,7 +183,6 @@ public class BodySourceView : MonoBehaviour
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
                     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
-                    //print(body.TrackingId);
                 }
 
                 RefreshBodyObject(body, _Bodies[body.TrackingId]);
@@ -219,8 +190,6 @@ public class BodySourceView : MonoBehaviour
                 Kinect.Joint footLeft = body.Joints[Kinect.JointType.FootLeft];
                 Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
                 Kinect.Joint handRight = body.Joints[Kinect.JointType.HandRight];
-
-                //print(handRight.Position.Y);
 
                 if (footLeft.Position.X < 0){
 
@@ -235,7 +204,7 @@ public class BodySourceView : MonoBehaviour
                     print("Left1: " + leftFootZ + "Right1: " + rightFootZ);
                 }
                 else if (footLeft.Position.X > 0){
-                    // && footLeft.Position.X > -1 && footLeft.Position.Z < 2
+            
                     foundRight = true;
 
                     leftFoot2Y = footLeft.Position.Y;
@@ -248,12 +217,13 @@ public class BodySourceView : MonoBehaviour
                 }
 
                 //launch ball
-                //if ((leftFootY > 0 && rightFootY > 0) || (leftFoot2Y > 0 && rightFoot2Y > 0))
                 if (handRight.Position.Y > 0)
                 {
                     pinball.SetActive(true);
-                    //print("On: " + pinball.activeSelf);
-                    pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
+
+                    //pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
+                    Rigidbody rb = pinball.GetComponent<Rigidbody>();
+                    rb.velocity = new Vector3(0, 20, 0);
                 }
 
                 //player one controls left flipper
