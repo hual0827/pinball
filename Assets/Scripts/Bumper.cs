@@ -18,9 +18,12 @@ public class Bumper : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        Score.instance.AddScore(500);
+        print(Score.instance.ReadScore());
+
         foreach(ContactPoint contact in col.contacts)
         {
-            contact.otherCollider.attachedRigidbody.AddForce(-1 * contact.normal * power, ForceMode.Impulse);
+            contact.otherCollider.attachedRigidbody.AddForce(-1 * contact.normal * power, ForceMode.Impulse);  
         }
 
         if(anim != null)

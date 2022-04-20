@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Kinect = Windows.Kinect;
 
+//[RequireComponent(typeof(HingeJoint))]
+//[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(MeshCollider))]
+
 public class BodySourceView : MonoBehaviour
 {
-
     public Vector3 pos;
 
     public int count;
@@ -29,7 +32,7 @@ public class BodySourceView : MonoBehaviour
 
     public bool pow;
     public bool pow2;
-    public bool power = true;
+    //public bool power = true;
 
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
@@ -69,8 +72,8 @@ public class BodySourceView : MonoBehaviour
     void Start()
     {
         pinball.SetActive(false);
-        //print("Off: " + pinball.activeSelf);
 
+       
     }
 
     void Update ()
@@ -79,7 +82,16 @@ public class BodySourceView : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             pinball.SetActive(true);
-            pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
+            //pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
+            Rigidbody rb = pinball.GetComponent<Rigidbody>();
+            Vector3 vel = rb.velocity;
+
+            float x = vel[0];
+            float z = vel[2];
+
+            float rand = Random.Range(0f, 0.5f);
+
+            rb.velocity = new Vector3(0, 20, -1);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {

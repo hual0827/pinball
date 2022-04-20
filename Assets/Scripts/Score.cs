@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    public int score;
-    // Start is called before the first frame update
-    void Start()
+    public static Score instance;
+    int score;
+
+    void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public int ReadScore()
     {
-        //print(score);
-       
+        return score;
     }
-     public void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.name == "Ball")
-                score+=500;
-        }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
+    }
 }
