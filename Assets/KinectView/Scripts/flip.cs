@@ -13,6 +13,8 @@ public class flip : MonoBehaviour
     [SerializeField] float power = 10;
     [SerializeField] float damper = 1;
 
+    public BodySourceView b;
+
     HingeJoint joint;
     JointSpring spring;
     JointLimits limits;
@@ -52,7 +54,7 @@ public class flip : MonoBehaviour
     {
          // FLIPPERS 2.0 **********************************************************
 
-        if(side == Sides.LEFT)
+        if(side == Sides.LEFT || b.pow)
         {
             if(Input.GetKey(KeyCode.LeftArrow))
             {    
@@ -63,7 +65,7 @@ public class flip : MonoBehaviour
                 spring.targetPosition = startPos;
             }
         }
-        if(side == Sides.RIGHT)
+        if(side == Sides.RIGHT || b.pow2)
         {
             if(Input.GetKey(KeyCode.RightArrow))
             {

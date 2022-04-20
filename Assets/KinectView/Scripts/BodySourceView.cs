@@ -75,10 +75,11 @@ public class BodySourceView : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             pinball.SetActive(true);
+            pinball.transform.position = new Vector3((float)1.82, (float)-4.19, (float)-0.6179);
             Rigidbody rb = pinball.GetComponent<Rigidbody>();
             Vector3 vel = rb.velocity;
 
-            rb.velocity = new Vector3(0, 20, 0);
+            rb.velocity = new Vector3(0, 30, 0);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -215,26 +216,21 @@ public class BodySourceView : MonoBehaviour
 
                     print("Left2: " + leftFoot2Z + "Right2: " + rightFoot2Z);
                 }
-
                 //launch ball
                 if (handRight.Position.Y > 0)
                 {
                     pinball.SetActive(true);
-
-                    //pinball.transform.position = new Vector3((float)-0.62, (float)4.38, (float)-0.61);
+                    pinball.transform.position = new Vector3((float)1.82, (float)-4.19, (float)-0.6179);
                     Rigidbody rb = pinball.GetComponent<Rigidbody>();
-                    rb.velocity = new Vector3(0, 20, 0);
+                    rb.velocity = new Vector3(0, 30, 0);
                 }
-
                 //player one controls left flipper
                 if (leftFootZ > rightFootZ + 0.1 || rightFootZ > leftFootZ + 0.1)
                     {
-
                         Vector3 newRotation = new Vector3(180, 0, 175);
                         leftFlip.transform.eulerAngles = newRotation;
 
                         pow = true;
-
                     }
                 //player two controls right flipper
                 if (rightFoot2Z > leftFoot2Z + 0.3 || leftFoot2Z > rightFoot2Z + 0.3)
