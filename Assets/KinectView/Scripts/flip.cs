@@ -26,7 +26,11 @@ public class flip : MonoBehaviour
     }
     public Sides side;
     public int direction;
+    public AudioSource flipperEngage;
+    bool stateChanged = false;
+    bool flipped = false;
 
+    public AudioClip flipSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,11 +64,25 @@ public class flip : MonoBehaviour
         if(side == Sides.LEFT)
         {
             if(Input.GetKey(KeyCode.LeftArrow) || b.pow)
-            {    
+            {
+                //flipped = true;
+                //if (flipped == true && stateChanged == true)
+                //{
+                //    flipperEngage.Play();
+                //    stateChanged = false;
+                //}
+                //flipperEngage.PlayOneShot(flipSound, 0.7F);
                 spring.targetPosition = endPos * direction;
+                
             }
             else
             {
+                flipped = false;
+                //if (flipped == t)
+                //{
+                    //flipperDisengage.Play();
+                //}
+                
                 spring.targetPosition = startPos;
             }
         }
@@ -73,6 +91,7 @@ public class flip : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.RightArrow) || b.pow2)
             {
+                //flipperEngage.Play();
                 spring.targetPosition = endPos * direction;
             }
             else
