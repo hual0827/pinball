@@ -30,7 +30,6 @@ public class flip : MonoBehaviour
     bool flippedLeft = false;
     bool flippedRight = false;
 
-    public AudioClip flipSound;
     // Start is called before the first frame update
     void Start()
     {
