@@ -18,13 +18,13 @@ public class Bumper : MonoBehaviour
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        myText.text = "0";
+        //myText.text = "0";
     }
 
     void OnCollisionEnter(Collision col)
     {
         Score.instance.AddScore(500);
-        myText.text = (Score.instance.ReadScore()).ToString();
+        //myText.text = (Score.instance.ReadScore()).ToString();
 
         print("Score: " + Score.instance.ReadScore());
 
