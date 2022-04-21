@@ -19,7 +19,7 @@ public class Bumper : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         Score.instance.AddScore(500);
-        print(Score.instance.ReadScore());
+        print("Score: " + Score.instance.ReadScore());
 
         foreach(ContactPoint contact in col.contacts)
         {

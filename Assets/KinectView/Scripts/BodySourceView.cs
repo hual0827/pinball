@@ -19,6 +19,8 @@ public class BodySourceView : MonoBehaviour
     static public float leftFoot2Z;
     static public float rightFoot2Z;
 
+    static public float headPos;
+
     public Material BoneMaterial;
     public GameObject BodySourceManager;
 
@@ -191,6 +193,7 @@ public class BodySourceView : MonoBehaviour
                 Kinect.Joint footLeft = body.Joints[Kinect.JointType.FootLeft];
                 Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
                 Kinect.Joint handRight = body.Joints[Kinect.JointType.HandRight];
+                Kinect.Joint head = body.Joints[Kinect.JointType.Head];
 
                 if (footLeft.Position.X < 0){
 
@@ -202,7 +205,7 @@ public class BodySourceView : MonoBehaviour
                     leftFootZ = footLeft.Position.Z;
                     rightFootZ = footRight.Position.Z;
 
-                    print("Left1: " + leftFootZ + "Right1: " + rightFootZ);
+                    headPos = head.Position.Y;
                 }
                 else if (footLeft.Position.X > 0){
             
@@ -214,10 +217,10 @@ public class BodySourceView : MonoBehaviour
                     leftFoot2Z = footLeft.Position.Z;
                     rightFoot2Z = footRight.Position.Z;
 
-                    print("Left2: " + leftFoot2Z + "Right2: " + rightFoot2Z);
+                    headPos = head.Position.Y;
                 }
                 //launch ball
-                if (handRight.Position.Y > 0)
+                if (handRight.Position.Y > headPos)
                 {
                     pinball.SetActive(true);
                     pinball.transform.position = new Vector3((float)1.82, (float)-4.19, (float)-0.6179);
@@ -227,33 +230,28 @@ public class BodySourceView : MonoBehaviour
                 //player one controls left flipper
                 if (leftFootZ > rightFootZ + 0.1 || rightFootZ > leftFootZ + 0.1)
                     {
-                        Vector3 newRotation = new Vector3(180, 0, 175);
-                        leftFlip.transform.eulerAngles = newRotation;
-
+                        //Vector3 newRotation = new Vector3(180, 0, 175);
+                        //leftFlip.transform.eulerAngles = newRotation;
                         pow = true;
                     }
                 //player two controls right flipper
                 if (rightFoot2Z > leftFoot2Z + 0.3 || leftFoot2Z > rightFoot2Z + 0.3)
                     {
-                        Vector3 newRotation = new Vector3(0, 0, -13);
-                        rightFlip.transform.eulerAngles = newRotation;
+                        //Vector3 newRotation = new Vector3(0, 0, -13);
+                        //rightFlip.transform.eulerAngles = newRotation;
                         pow2 = true;
 
-                        print("FLIPPERROT AFTER: " + rightFlip.transform.eulerAngles.z);
+            
                     }
                 else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && leftFlip.transform.rotation.z < 200) {
-                    Vector3 backRotation = new Vector3(180, 0, 205);
-                    leftFlip.transform.eulerAngles = backRotation;
-
+                    //Vector3 backRotation = new Vector3(180, 0, 205);
+                    //leftFlip.transform.eulerAngles = backRotation;
                     pow = false;
                 }
                 if (rightFoot2Z < leftFoot2Z + 0.2 && rightFoot2Z > leftFoot2Z - 0.2 && rightFlip.transform.eulerAngles.z > 25) {
-                    
-                    print("MADE IT");
-                    Vector3 backRRotation = new Vector3(0, 0, 25);
-                    print("BR" + backRRotation);
-                    rightFlip.transform.eulerAngles = backRRotation;
-                    print("AFTERR" + rightFlip.transform.eulerAngles);
+                
+                    //Vector3 backRRotation = new Vector3(0, 0, 25); 
+                    //rightFlip.transform.eulerAngles = backRRotation;
                     pow2 = false;
                 }
 
