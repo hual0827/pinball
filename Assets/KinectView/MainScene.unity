@@ -1124,7 +1124,11 @@ MonoBehaviour:
   endPos: 45
   power: 20000
   damper: 1
+<<<<<<< Updated upstream
   b: {fileID: 112136120}
+=======
+  b: {fileID: 0}
+>>>>>>> Stashed changes
   side: 1
   direction: -1
 --- !u!64 &484389810
@@ -1372,7 +1376,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f083f6ed9c47f4b3ca80e97a3a275f24, type: 2}
+  - {fileID: 2100000, guid: 696eaed6754904930a82f0eb8e68b603, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
