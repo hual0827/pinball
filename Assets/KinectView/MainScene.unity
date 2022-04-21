@@ -266,7 +266,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 422628306}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &58166760
 AudioSource:
@@ -279,7 +279,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7a5b76bb58e024b40b4ea0c9516207f8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1140,6 +1140,7 @@ GameObject:
   - component: {fileID: 368443160}
   - component: {fileID: 368443159}
   - component: {fileID: 368443158}
+  - component: {fileID: 368443162}
   m_Layer: 0
   m_Name: SlideTrigger
   m_TagString: Untagged
@@ -1223,6 +1224,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368443162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368443157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef67c86dd8e417548afdeef2e83185ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideSound: {fileID: 1676112000}
 --- !u!1 &385790703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,6 +1492,7 @@ Transform:
   m_LocalPosition: {x: 0.6940517, y: -1.1585696, z: 4.3988166}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1676112001}
   - {fileID: 780192288}
   - {fileID: 58166759}
   m_Father: {fileID: 0}
@@ -1509,6 +1524,10 @@ MonoBehaviour:
   side: 1
   direction: -1
   flipperEngage: {fileID: 780192289}
+<<<<<<< Updated upstream
+=======
+  flipperDisengage: {fileID: 58166760}
+>>>>>>> Stashed changes
 --- !u!64 &484389810
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1989,6 +2008,10 @@ MonoBehaviour:
   side: 0
   direction: 1
   flipperEngage: {fileID: 780192289}
+<<<<<<< Updated upstream
+=======
+  flipperDisengage: {fileID: 58166760}
+>>>>>>> Stashed changes
 --- !u!59 &635715105
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -2646,7 +2669,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 422628306}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &780192289
 AudioSource:
@@ -3007,6 +3030,10 @@ MonoBehaviour:
   side: 0
   direction: -1
   flipperEngage: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+  flipperDisengage: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!59 &870248240
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -4520,6 +4547,133 @@ Transform:
   m_Father: {fileID: 621391747}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1676111999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1676112001}
+  - component: {fileID: 1676112000}
+  m_Layer: 0
+  m_Name: slide
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1676112000
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676111999}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bf3fb899f485bdb45bf72c7686af7421, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1676112001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676111999}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5379765, y: 1.2622768, z: -11.57015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 422628306}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1683896623
 GameObject:
   m_ObjectHideFlags: 0
@@ -5671,6 +5825,10 @@ MonoBehaviour:
   side: 1
   direction: -1
   flipperEngage: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+  flipperDisengage: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!59 &497395048617420895
 HingeJoint:
   m_ObjectHideFlags: 0

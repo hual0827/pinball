@@ -26,7 +26,10 @@ public class flip : MonoBehaviour
     }
     public Sides side;
     public int direction;
+
     public AudioSource flipperEngage;
+    public AudioSource flipperDisengage;
+
     bool flippedLeft = false;
     bool flippedRight = false;
 
@@ -77,7 +80,7 @@ public class flip : MonoBehaviour
                 if (flippedLeft == true)
                 {
                     flippedLeft = false;
-                    //flipperDisengage.Play();
+                    flipperDisengage.Play();
                 }
                 spring.targetPosition = startPos;
             }
@@ -99,7 +102,7 @@ public class flip : MonoBehaviour
                 if (flippedRight == true)
                 {
                     flippedRight = false;
-                    //flipperDisengage.Play();
+                    flipperDisengage.Play();
                 }
                 spring.targetPosition = startPos;
             }
