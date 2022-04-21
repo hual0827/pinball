@@ -27,8 +27,8 @@ public class flip : MonoBehaviour
     public Sides side;
     public int direction;
     public AudioSource flipperEngage;
-    bool stateChanged = false;
-    bool flipped = false;
+    bool flippedLeft = false;
+    bool flippedRight = false;
 
     public AudioClip flipSound;
     // Start is called before the first frame update
@@ -65,24 +65,21 @@ public class flip : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.LeftArrow) || b.pow)
             {
-                //flipped = true;
-                //if (flipped == true && stateChanged == true)
-                //{
-                //    flipperEngage.Play();
-                //    stateChanged = false;
-                //}
-                //flipperEngage.PlayOneShot(flipSound, 0.7F);
+                if(flippedLeft == false)
+                {
+                    flippedLeft = true;
+                    flipperEngage.Play();
+                }
                 spring.targetPosition = endPos * direction;
                 
             }
             else
             {
-                flipped = false;
-                //if (flipped == t)
-                //{
+                if (flippedLeft == true)
+                {
+                    flippedLeft = false;
                     //flipperDisengage.Play();
-                //}
-                
+                }
                 spring.targetPosition = startPos;
             }
         }
@@ -91,11 +88,20 @@ public class flip : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.RightArrow) || b.pow2)
             {
-                //flipperEngage.Play();
+                if (flippedRight == false)
+                {
+                    flippedRight = true;
+                    flipperEngage.Play();
+                }
                 spring.targetPosition = endPos * direction;
             }
             else
             {
+                if (flippedRight == true)
+                {
+                    flippedRight = false;
+                    //flipperDisengage.Play();
+                }
                 spring.targetPosition = startPos;
             }
         }
