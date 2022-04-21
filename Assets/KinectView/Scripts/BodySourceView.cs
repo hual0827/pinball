@@ -9,6 +9,8 @@ public class BodySourceView : MonoBehaviour
 
     public int count;
 
+    public int round;
+
     static public float leftFootY;
     static public float rightFootY;
     static public float leftFootZ;
@@ -82,6 +84,14 @@ public class BodySourceView : MonoBehaviour
             Vector3 vel = rb.velocity;
 
             rb.velocity = new Vector3(0, 30, 0);
+
+            round++;
+
+            if(round == 4)
+            {
+                Score.instance.ResetScore();
+                print("Score: " + Score.instance.ReadScore());
+            }
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
