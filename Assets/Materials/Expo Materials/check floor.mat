@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: flipper tops
+  m_Name: check floor
   m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,9 +40,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1ea8f3a493cb84376b8b42a573888378, type: 3}
-        m_Scale: {x: -0.34, y: 0.74}
-        m_Offset: {x: -0.91, y: 0.03}
+        m_Texture: {fileID: 2800000, guid: 462e84f61875c4af4a9b2ac1d5e6bce4, type: 3}
+        m_Scale: {x: 1.04, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
