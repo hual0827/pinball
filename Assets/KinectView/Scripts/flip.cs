@@ -52,14 +52,11 @@ public class flip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //print(b.pow);
-
          // FLIPPERS 2.0 **********************************************************
-        
-              
-        if(side == Sides.LEFT)
+
+        if(side == Sides.LEFT || b.pow)
         {
-            if(Input.GetKey(KeyCode.LeftArrow) || b.pow)
+            if(Input.GetKey(KeyCode.LeftArrow))
             {    
                 spring.targetPosition = endPos * direction;
             }
@@ -68,10 +65,9 @@ public class flip : MonoBehaviour
                 spring.targetPosition = startPos;
             }
         }
-        
-        if(side == Sides.RIGHT)
+        if(side == Sides.RIGHT || b.pow2)
         {
-            if(Input.GetKey(KeyCode.RightArrow) || b.pow2)
+            if(Input.GetKey(KeyCode.RightArrow))
             {
                 spring.targetPosition = endPos * direction;
             }
