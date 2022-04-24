@@ -412,6 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: {x: 0, y: 0, z: 0}
   count: 0
+  round: 0
   BoneMaterial: {fileID: 2100000, guid: f2ea145c63353784985576f08398a815, type: 2}
   BodySourceManager: {fileID: 1698423884}
   pinball: {fileID: 676194380}
@@ -2885,6 +2886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2bbba78afc26749b2fa5d6c13104ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myText: {fileID: 0}
   power: 1.5
 --- !u!54 &852868518
 Rigidbody:
@@ -3434,6 +3436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2bbba78afc26749b2fa5d6c13104ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myText: {fileID: 0}
   power: 2
 --- !u!54 &966519668
 Rigidbody:
@@ -3664,7 +3667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f8c1d3110ed26418e8c6aad77b4fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 676194380}
 --- !u!4 &1038125701
 Transform:
   m_ObjectHideFlags: 0
@@ -4545,7 +4547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683896623}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.9440971, y: 3.8189673, z: 7.020172}
+  m_LocalPosition: {x: 0.9440971, y: 4.155, z: 7.02}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 1882403782}
@@ -6022,6 +6024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2bbba78afc26749b2fa5d6c13104ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myText: {fileID: 0}
   power: 2
 --- !u!54 &798337180332714782
 Rigidbody:
@@ -7706,6 +7709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2bbba78afc26749b2fa5d6c13104ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myText: {fileID: 0}
   power: 2
 --- !u!64 &2839662941868754213
 MeshCollider:
@@ -10349,6 +10353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2bbba78afc26749b2fa5d6c13104ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myText: {fileID: 0}
   power: 2
 --- !u!54 &5903350835215721458
 Rigidbody:
@@ -13126,8 +13131,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8123209211543041101}
   m_LocalRotation: {x: -0.84243333, y: 0.5388006, z: -0, w: 0}
-  m_LocalPosition: {x: -1.8816327, y: -0.23645693, z: 5.209124}
-  m_LocalScale: {x: 15.792898, y: 15.792898, z: 15.792898}
+  m_LocalPosition: {x: -2, y: -0.25, z: 5.209124}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children:
   - {fileID: 1169556872481653431}
   - {fileID: 1786835117209275586}
@@ -13251,6 +13256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2bbba78afc26749b2fa5d6c13104ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myText: {fileID: 0}
   power: 1.5
 --- !u!54 &8980243760891760346
 Rigidbody:

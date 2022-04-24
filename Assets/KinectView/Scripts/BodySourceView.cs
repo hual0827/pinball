@@ -216,6 +216,7 @@ public class BodySourceView : MonoBehaviour
                     rightFootZ = footRight.Position.Z;
 
                     headPos = head.Position.Y;
+                    print("Player 1: " + footLeft.Position.X);
                 }
                 else if (footLeft.Position.X > 0){
             
@@ -228,14 +229,22 @@ public class BodySourceView : MonoBehaviour
                     rightFoot2Z = footRight.Position.Z;
 
                     headPos = head.Position.Y;
+                    print("Player 2: " + footLeft.Position.X);
                 }
                 //launch ball
                 if (handRight.Position.Y > headPos)
                 {
+                    round++;
+                    if(round % 4 == 0)
+                    {
+                        Score.instance.ResetScore();
+                        print("Score: " + Score.instance.ReadScore());
+                    }
+
                     pinball.SetActive(true);
                     pinball.transform.position = new Vector3((float)1.82, (float)-4.19, (float)-0.6179);
                     Rigidbody rb = pinball.GetComponent<Rigidbody>();
-                    rb.velocity = new Vector3(0, 30, 0);
+                    rb.velocity = new Vector3(0, 30, 0);   
                 }
                 //player one controls left flipper
                 if (leftFootZ > rightFootZ + 0.1 || rightFootZ > leftFootZ + 0.1)
@@ -245,7 +254,7 @@ public class BodySourceView : MonoBehaviour
                         pow = true;
                     }
                 //player two controls right flipper
-                if (rightFoot2Z > leftFoot2Z + 0.3 || leftFoot2Z > rightFoot2Z + 0.3)
+                if (rightFoot2Z > leftFoot2Z + 0.1 || leftFoot2Z > rightFoot2Z + 0.1)
                     {
                         //Vector3 newRotation = new Vector3(0, 0, -13);
                         //rightFlip.transform.eulerAngles = newRotation;
