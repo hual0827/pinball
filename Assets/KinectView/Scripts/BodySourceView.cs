@@ -86,11 +86,13 @@ public class BodySourceView : MonoBehaviour
             rb.velocity = new Vector3(0, 30, 0);
 
             round++;
+            print("ROUND: " + round);
 
             if(round == 4)
             {
                 Score.instance.ResetScore();
                 print("Score: " + Score.instance.ReadScore());
+                round = 0;
             }
         }
         if (Input.GetKeyDown(KeyCode.A))
@@ -235,10 +237,13 @@ public class BodySourceView : MonoBehaviour
                 if (handRight.Position.Y > headPos)
                 {
                     round++;
-                    if(round % 4 == 0)
+                    print("ROUND: " + round);
+                    if(round == 4)
                     {
                         Score.instance.ResetScore();
                         print("Score: " + Score.instance.ReadScore());
+                        //print("ROUND: " + round);
+                        round = 0;
                     }
 
                     pinball.SetActive(true);

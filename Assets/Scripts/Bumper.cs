@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -10,21 +9,16 @@ using UnityEngine.UI;
 public class Bumper : MonoBehaviour
 {
     
-    public Text myText;
-
-
     [SerializeField] float power = 1f;
     Animator anim;
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        //myText.text = "0";
     }
 
     void OnCollisionEnter(Collision col)
     {
         Score.instance.AddScore(500);
-        //myText.text = (Score.instance.ReadScore()).ToString();
 
         print("Score: " + Score.instance.ReadScore());
 
