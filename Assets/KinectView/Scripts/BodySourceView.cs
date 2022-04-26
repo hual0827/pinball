@@ -95,30 +95,30 @@ public class BodySourceView : MonoBehaviour
                 round = 0;
             }
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Vector3 newRotation = new Vector3(180, 0, 175);
-            leftFlip.transform.eulerAngles = newRotation;
-            pow = true;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Vector3 newRotation = new Vector3(0, 0, -7);
-            rightFlip.transform.eulerAngles = newRotation;
-            pow2 = true;
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            Vector3 backRotation = new Vector3(180, 0, 205);
-            leftFlip.transform.eulerAngles = backRotation;
-            pow = false;
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            Vector3 backRotation = new Vector3(0, 0, 23);
-            rightFlip.transform.eulerAngles = backRotation;
-            pow2 = false;
-        }
+        // if (Input.GetKeyDown(KeyCode.A))
+        // {
+        //     Vector3 newRotation = new Vector3(180, 0, 175);
+        //     leftFlip.transform.eulerAngles = newRotation;
+        //     pow = true;
+        // }
+        // if (Input.GetKeyDown(KeyCode.D))
+        // {
+        //     Vector3 newRotation = new Vector3(0, 0, -7);
+        //     rightFlip.transform.eulerAngles = newRotation;
+        //     pow2 = true;
+        // }
+        // if (Input.GetKeyUp(KeyCode.A))
+        // {
+        //     Vector3 backRotation = new Vector3(180, 0, 205);
+        //     leftFlip.transform.eulerAngles = backRotation;
+        //     pow = false;
+        // }
+        // if (Input.GetKeyUp(KeyCode.D))
+        // {
+        //     Vector3 backRotation = new Vector3(0, 0, 23);
+        //     rightFlip.transform.eulerAngles = backRotation;
+        //     pow2 = false;
+        // }
 
         if (BodySourceManager == null)
         {
@@ -218,7 +218,7 @@ public class BodySourceView : MonoBehaviour
                     rightFootZ = footRight.Position.Z;
 
                     headPos = head.Position.Y;
-                    print("Player 1: " + footLeft.Position.X);
+                    print("Player 1: X: " + footLeft.Position.X + " Y: " + footLeft.Position.Y + " Z: " + footLeft.Position.Z);
                 }
                 else if (footLeft.Position.X > 0){
             
@@ -231,18 +231,16 @@ public class BodySourceView : MonoBehaviour
                     rightFoot2Z = footRight.Position.Z;
 
                     headPos = head.Position.Y;
-                    print("Player 2: " + footLeft.Position.X);
+                    print("Player 2: " + footLeft.Position.X + " Y: " + footLeft.Position.Y + " Z: " + footLeft.Position.Z);
                 }
                 //launch ball
                 if (handRight.Position.Y > headPos)
                 {
                     round++;
-                    print("ROUND: " + round);
                     if(round == 4)
                     {
                         Score.instance.ResetScore();
                         print("Score: " + Score.instance.ReadScore());
-                        //print("ROUND: " + round);
                         round = 0;
                     }
 
@@ -254,28 +252,18 @@ public class BodySourceView : MonoBehaviour
                 //player one controls left flipper
                 if (leftFootZ > rightFootZ + 0.1 || rightFootZ > leftFootZ + 0.1)
                     {
-                        //Vector3 newRotation = new Vector3(180, 0, 175);
-                        //leftFlip.transform.eulerAngles = newRotation;
                         pow = true;
                     }
                 //player two controls right flipper
                 if (rightFoot2Z > leftFoot2Z + 0.1 || leftFoot2Z > rightFoot2Z + 0.1)
                     {
-                        //Vector3 newRotation = new Vector3(0, 0, -13);
-                        //rightFlip.transform.eulerAngles = newRotation;
-                        pow2 = true;
-
-            
+                        pow2 = true;     
                     }
+                //return flippers to start pos
                 else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && leftFlip.transform.rotation.z < 200) {
-                    //Vector3 backRotation = new Vector3(180, 0, 205);
-                    //leftFlip.transform.eulerAngles = backRotation;
                     pow = false;
                 }
                 if (rightFoot2Z < leftFoot2Z + 0.2 && rightFoot2Z > leftFoot2Z - 0.2 && rightFlip.transform.eulerAngles.z > 25) {
-                
-                    //Vector3 backRRotation = new Vector3(0, 0, 25); 
-                    //rightFlip.transform.eulerAngles = backRRotation;
                     pow2 = false;
                 }
 
