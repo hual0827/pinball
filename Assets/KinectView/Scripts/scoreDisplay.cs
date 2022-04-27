@@ -7,6 +7,10 @@ using TMPro;
 public class scoreDisplay : MonoBehaviour
 {
     public TMP_Text myText;
+    public TMP_Text highScore;
+    public TMP_Text roundNum;
+
+    public BodySourceView b;
 
     // Start is called before the first frame update
     void Start()
@@ -18,5 +22,15 @@ public class scoreDisplay : MonoBehaviour
     void Update()
     {
         myText.text = (Score.instance.ReadScore()).ToString();
+        if (b.round != 4) 
+        {
+            roundNum.text = ("Ball " + b.round);
+        }
+        if (Score.instance.ReadScore() > Score.instance.ReadHighScore())
+        {
+            Score.instance.SetHighScore(Score.instance.ReadScore());
+            highScore.text = ("HS: " + Score.instance.ReadHighScore().ToString());
+        }
+        
     }
 }

@@ -8,7 +8,7 @@ public class BodySourceView : MonoBehaviour
     public Vector3 pos;
 
     public int count;
-    public int round;
+    public int round = 0;
     public bool fallen = false;
 
     static public float leftFootY;
@@ -79,21 +79,25 @@ public class BodySourceView : MonoBehaviour
         //key controls for testing
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            pinball.SetActive(true);
-            pinball.transform.position = new Vector3((float)1.82, (float)-4.19, (float)-0.6179);
-            Rigidbody rb = pinball.GetComponent<Rigidbody>();
-            Vector3 vel = rb.velocity;
-
-            rb.velocity = new Vector3(0, 30, 0);
-
-            round++;
-            print("ROUND: " + round);
-
-            if(round == 4)
+            if (fallen == true || round == 0)
             {
-                Score.instance.ResetScore();
-                print("Score: " + Score.instance.ReadScore());
-                round = 0;
+                pinball.SetActive(true);
+                pinball.transform.position = new Vector3((float)1.82, (float)-4.19, (float)-0.6179);
+                Rigidbody rb = pinball.GetComponent<Rigidbody>();
+                Vector3 vel = rb.velocity;
+
+                rb.velocity = new Vector3(0, 30, 0);
+
+                //round++;
+                print("ROUND: " + round);
+
+                if(round == 4)
+                {
+                    Score.instance.ResetScore();
+                    print("Score: " + Score.instance.ReadScore());
+                    round = 1;
+                }
+                fallen = false;
             }
         }
         // if (Input.GetKeyDown(KeyCode.A))
