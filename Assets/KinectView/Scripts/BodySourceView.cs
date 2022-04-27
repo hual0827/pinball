@@ -8,8 +8,8 @@ public class BodySourceView : MonoBehaviour
     public Vector3 pos;
 
     public int count;
-
     public int round;
+    public bool fallen = false;
 
     static public float leftFootY;
     static public float rightFootY;
@@ -29,6 +29,7 @@ public class BodySourceView : MonoBehaviour
     public GameObject pinball;
     public GameObject leftFlip;
     public GameObject rightFlip;
+    public GameObject trig;
 
     public bool pow;
     public bool pow2;
@@ -231,43 +232,45 @@ public class BodySourceView : MonoBehaviour
                     rightFoot2Z = footRight.Position.Z;
 
                     headPos = head.Position.Y;
-                    print("Player 2: " + footLeft.Position.X + " Y: " + footLeft.Position.Y + " Z: " + footLeft.Position.Z);
+                    print("Player 2: X: " + footLeft.Position.X + " Y: " + footLeft.Position.Y + " Z: " + footLeft.Position.Z);
                 }
                 //launch ball
                 if (handRight.Position.Y > headPos)
-                {
-                    round++;
-                    if(round == 4)
+                {   
+                    if (fallen == true || round == 0)
                     {
-                        Score.instance.ResetScore();
-                        print("Score: " + Score.instance.ReadScore());
-                        round = 0;
-                    }
+                        if(round == 4)
+                        {
+                            Score.instance.ResetScore();
+                            print("Score: " + Score.instance.ReadScore());
+                            round = 0;
+                        }
 
-                    pinball.SetActive(true);
-                    pinball.transform.position = new Vector3((float)1.82, (float)-4.19, (float)-0.6179);
-                    Rigidbody rb = pinball.GetComponent<Rigidbody>();
-                    rb.velocity = new Vector3(0, 30, 0);   
+                        pinball.SetActive(true);
+                        pinball.transform.position = new Vector3((float)1.82, (float)-4.19, (float)-0.6179);
+                        Rigidbody rb = pinball.GetComponent<Rigidbody>();
+                        rb.velocity = new Vector3(0, 30, 0);   
+
+                        fallen = false;
+                    }
+                   
                 }
                 //player one controls left flipper
-                if (leftFootZ > rightFootZ + 0.1 || rightFootZ > leftFootZ + 0.1)
-                    {
-                        pow = true;
-                    }
-                //player two controls right flipper
-                if (rightFoot2Z > leftFoot2Z + 0.1 || leftFoot2Z > rightFoot2Z + 0.1)
-                    {
-                        pow2 = true;     
-                    }
-                //return flippers to start pos
-                else if (footRight.Position.Y < footLeft.Position.Y + 0.2 && footRight.Position.Y > footLeft.Position.Y - 0.2 && leftFlip.transform.rotation.z < 200) {
+                if (leftFootZ > rightFootZ + 0.2 || rightFootZ > leftFootZ + 0.2)
+                {
+                    pow = true;
+                }
+                else if (rightFootZ < leftFootZ + 0.2 && rightFootZ > leftFootZ - 0.2 && leftFlip.transform.rotation.z < 200) {
                     pow = false;
                 }
-                if (rightFoot2Z < leftFoot2Z + 0.2 && rightFoot2Z > leftFoot2Z - 0.2 && rightFlip.transform.eulerAngles.z > 25) {
+                //player two controls right flipper
+                if (rightFoot2Z > leftFoot2Z + 0.2 || leftFoot2Z > rightFoot2Z + 0.2)
+                {
+                    pow2 = true;     
+                }
+                else if (rightFoot2Z < leftFoot2Z + 0.2 && rightFoot2Z > leftFoot2Z - 0.2 && rightFlip.transform.eulerAngles.z > 25) {
                     pow2 = false;
                 }
-
-
             }
         }
         //if (!foundLeft){
@@ -352,3 +355,4 @@ public class BodySourceView : MonoBehaviour
         return new Vector3(joint.Position.X * 10, joint.Position.Y * 10, joint.Position.Z * 10);
     }
 }
+
