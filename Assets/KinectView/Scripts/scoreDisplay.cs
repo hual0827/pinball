@@ -34,7 +34,7 @@ public class scoreDisplay : MonoBehaviour
         if (Score.instance.ReadScore() > Score.instance.ReadHighScore())
         {
             Score.instance.SetHighScore(Score.instance.ReadScore());
-            highScore.text = ("HS: " + Score.instance.ReadHighScore().ToString());
+            highScore.text = ("CHAMP: " + Score.instance.ReadHighScore().ToString());
         }
         
     }

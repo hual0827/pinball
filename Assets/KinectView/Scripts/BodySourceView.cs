@@ -100,30 +100,6 @@ public class BodySourceView : MonoBehaviour
                 fallen = false;
             }
         }
-        // if (Input.GetKeyDown(KeyCode.A))
-        // {
-        //     Vector3 newRotation = new Vector3(180, 0, 175);
-        //     leftFlip.transform.eulerAngles = newRotation;
-        //     pow = true;
-        // }
-        // if (Input.GetKeyDown(KeyCode.D))
-        // {
-        //     Vector3 newRotation = new Vector3(0, 0, -7);
-        //     rightFlip.transform.eulerAngles = newRotation;
-        //     pow2 = true;
-        // }
-        // if (Input.GetKeyUp(KeyCode.A))
-        // {
-        //     Vector3 backRotation = new Vector3(180, 0, 205);
-        //     leftFlip.transform.eulerAngles = backRotation;
-        //     pow = false;
-        // }
-        // if (Input.GetKeyUp(KeyCode.D))
-        // {
-        //     Vector3 backRotation = new Vector3(0, 0, 23);
-        //     rightFlip.transform.eulerAngles = backRotation;
-        //     pow2 = false;
-        // }
 
         if (BodySourceManager == null)
         {
@@ -247,7 +223,7 @@ public class BodySourceView : MonoBehaviour
                         {
                             Score.instance.ResetScore();
                             print("Score: " + Score.instance.ReadScore());
-                            round = 0;
+                            round = 1;
                         }
 
                         pinball.SetActive(true);
