@@ -10,6 +10,9 @@ public class Bumper : MonoBehaviour
 {
     
     [SerializeField] float power = 1f;
+
+    public AudioSource BumperSound;
+
     Animator anim;
     void Start()
     {
@@ -24,7 +27,9 @@ public class Bumper : MonoBehaviour
 
         foreach(ContactPoint contact in col.contacts)
         {
-            contact.otherCollider.attachedRigidbody.AddForce(-1 * contact.normal * power, ForceMode.Impulse);  
+            contact.otherCollider.attachedRigidbody.AddForce(-1 * contact.normal * power, ForceMode.Impulse);
+            BumperSound.Play();
+            print("hit");
         }
 
         if(anim != null)

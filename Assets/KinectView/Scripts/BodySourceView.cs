@@ -34,6 +34,8 @@ public class BodySourceView : MonoBehaviour
     public bool pow;
     public bool pow2;
 
+    public AudioSource Launcher;
+
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
 
@@ -227,6 +229,7 @@ public class BodySourceView : MonoBehaviour
                         }
 
                         pinball.SetActive(true);
+                        Launcher.Play();
                         pinball.transform.position = new Vector3((float)1.82, (float)-4.19, (float)-0.6179);
                         Rigidbody rb = pinball.GetComponent<Rigidbody>();
                         rb.velocity = new Vector3(0, 30, 0);   
