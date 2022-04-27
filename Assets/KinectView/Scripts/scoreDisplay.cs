@@ -22,9 +22,14 @@ public class scoreDisplay : MonoBehaviour
     void Update()
     {
         myText.text = (Score.instance.ReadScore()).ToString();
-        if (b.round != 4) 
+        if (b.round == 4)
+        {
+            roundNum.text = ("GAME OVER");
+        }
+        else
         {
             roundNum.text = ("Ball " + b.round);
+            
         }
         if (Score.instance.ReadScore() > Score.instance.ReadHighScore())
         {
